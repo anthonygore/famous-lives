@@ -1,0 +1,17 @@
+mongo:
+  image: mongo:latest
+  ports:
+    - "27017:27017"
+  volumes:
+    - ./mongo/data:/data
+
+server:
+  image: mobapi/nodemon:latest
+  working_dir: /usr/src/app
+  command: nodemon server.js -e js,html,handlebars,css
+  ports:
+    - "4000:4000"
+  volumes:
+    - ./nodeserver/:/usr/src/app
+  links:
+    - mongo

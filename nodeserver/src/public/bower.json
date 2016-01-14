@@ -1,0 +1,21 @@
+{
+  "name": "HorizontalHistory",
+  "authors": [
+    "Anthony Gore <anthony@magnum.technology>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.0"
+  }
+}

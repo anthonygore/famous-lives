@@ -1,0 +1,5 @@
+/.idea
+/nodeserver/node_modules
+/nodeserver/src/public/bower_components
+/nodeserver/output.csv
+/mongo/data
