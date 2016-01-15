@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'Raleway', sans-serif; }
+
+.history-window {
+  border: 1px black solid;
+  overflow: scroll;
+  direction: rtl;
+  position: relative;
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px; }
+
+.row {
+  position: relative;
+  height: 20px;
+  /*Colors*/ }
+  .row .wrapper {
+    position: absolute;
+    width: 100%; }
+    .row .wrapper .name {
+      position: absolute;
+      z-index: 1; }
+      .row .wrapper .name span {
+        float: left; }
+      .row .wrapper .name span.bullet {
+        font-size: 32px;
+        position: absolute;
+        left: -12px;
+        top: -12px; }
+  .row div.sports {
+    color: red; }
+  .row div.exploration {
+    color: lightsalmon; }
+  .row div.humanities {
+    color: blue; }
+  .row div.institutions {
+    color: green; }
+  .row div.arts {
+    color: purple; }
+  .row div.public-figure {
+    color: lightblue; }
+  .row div.science-technology {
+    color: yellowgreen; }
+  .row div.business-law {
+    color: lightgreen; }
+
+.stripe-1 {
+  background-color: #ddd; }
+
+.stripe-2 {
+  background-color: #eaeaea; }
+
+.stripe-3 {
+  background-color: #f7f7f7; }
+
+.stripe-4 {
+  background-color: white; }
+
+#lines {
+  position: absolute;
+  height: 100%;
+  z-index: 1; }
+  #lines .line {
+    float: right;
+    height: 100%;
+    position: relative; }
+    #lines .line .vertical-text {
+      transform: rotate(90deg);
+      right: -14px;
+      position: absolute;
+      top: 8px; }
+  #lines .line-1 {
+    border-left: solid lightgrey 1px; }
+  #lines .line-2 {
+    border-left: dashed lightgrey 1px; }

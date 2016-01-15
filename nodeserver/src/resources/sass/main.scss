@@ -1,4 +1,99 @@
-body {
+@font-face {
+  font-family: 'Raleway', sans-serif;
+}
 
+$grey : #ddd;
 
+.history-window {
+  border: 1px black solid;
+  overflow: scroll;
+  direction:rtl;
+  position: relative;
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+}
+
+.row {
+  position: relative;
+  height: 20px;
+  .wrapper {
+    position: absolute;
+    width: 100%;
+    .name {
+      position: absolute;
+      z-index: 1;
+      span {
+        float: left;
+      }
+      span.bullet {
+        font-size: 32px;
+        position: absolute;
+        left: -12px;
+        top: -12px;
+      }
+    }
+  }
+
+  /*Colors*/
+  div.sports {
+    color: red;
+  }
+  div.exploration {
+    color: lightsalmon;
+  }
+  div.humanities {
+    color: blue;
+  }
+  div.institutions {
+    color: green;
+  }
+  div.arts {
+    color: purple
+  }
+  div.public-figure {
+    color: lightblue;
+  }
+  div.science-technology {
+    color: yellowgreen;
+  }
+  div.business-law {
+    color: lightgreen;
+  }
+
+}
+
+.stripe-1 {
+  background-color: $grey
+}
+.stripe-2 {
+  background-color: lighten($grey, 5%);
+}
+.stripe-3 {
+  background-color: lighten($grey, 10%);
+}
+.stripe-4 {
+  background-color: lighten($grey, 15%);
+}
+
+#lines {
+  position: absolute;
+  height: 100%;
+  z-index: 1;
+  .line {
+    float:right;
+    height: 100%;
+    position: relative;
+    .vertical-text {
+      transform: rotate(90deg);
+      right: -14px;
+      position: absolute;
+      top: 8px;
+    }
+  }
+  .line-1 {
+    border-left: solid lightgrey 1px;
+  }
+  .line-2 {
+    border-left: dashed lightgrey 1px;
+  }
 }

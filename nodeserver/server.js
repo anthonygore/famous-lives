@@ -32,7 +32,7 @@ var getPeople = function (callback) {
         var collection = db.collection('people');
         var params = {"name":1,"birthyear":1,"domain":1,"continentName":1,_id:0};
         var sort = {
-            "HPI" : -1
+            "HPI" : 1
         };
 
         collection.find({}, params).sort(sort).toArray(function(err, items) {
@@ -462,9 +462,9 @@ seedDb(function(){
                 row_end = data.length;
             }
 
-            return res.json({
-                data: data.slice(row_start, row_end)
-            });
+            return res.json(
+                data.slice(row_start, row_end)
+            );
 
         });
 
