@@ -4,7 +4,55 @@
 
 $grey : #ddd;
 
-.history-window {
+/*Colors*/
+.sports {
+  color: red;
+}
+.exploration {
+  color: lightsalmon;
+}
+.humanities {
+  color: blue;
+}
+.institutions {
+  color: green;
+}
+.arts {
+  color: purple
+}
+.public-figure {
+  color: lightblue;
+}
+.science-technology {
+  color: yellowgreen;
+}
+.business-law {
+  color: lightgreen;
+}
+
+/*Legend*/
+#legend {
+  font-family: 'Raleway', sans-serif;
+  font-size: 11px;
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline;
+      position: relative;
+      margin-right: 15px;
+    }
+    li:before {
+      content: "•";
+      font-size: 32px;
+      position: absolute;
+      left: -12px;
+      top: -12px;
+    }
+  }
+}
+
+#history-window {
   border: 1px black solid;
   overflow: scroll;
   direction:rtl;
@@ -13,51 +61,42 @@ $grey : #ddd;
   font-size: 12px;
 }
 
+#sub-history-window {
+  height: 40px;
+  width: 20000px;
+  background-color: #aaa;
+  .vertical-text {
+    transform: rotate(90deg);
+    right: -14px;
+    position: absolute;
+    top: 15px;
+  }
+}
+
 .row {
   position: relative;
   height: 20px;
   .wrapper {
     position: absolute;
     width: 100%;
-    .name {
-      position: absolute;
+    height:100%;
+    .name-wrapper {
+      position: relative;
+      height: 100%;
+      width: 100%;
       z-index: 1;
       span {
-        float: left;
+        position: absolute;
+      }
+      span.name {
+        left: 12px;
       }
       span.bullet {
         font-size: 32px;
-        position: absolute;
-        left: -12px;
-        top: -12px;
+        line-height: 13px;
+        left: 0px
       }
     }
-  }
-
-  /*Colors*/
-  div.sports {
-    color: red;
-  }
-  div.exploration {
-    color: lightsalmon;
-  }
-  div.humanities {
-    color: blue;
-  }
-  div.institutions {
-    color: green;
-  }
-  div.arts {
-    color: purple
-  }
-  div.public-figure {
-    color: lightblue;
-  }
-  div.science-technology {
-    color: yellowgreen;
-  }
-  div.business-law {
-    color: lightgreen;
   }
 
 }
@@ -75,21 +114,17 @@ $grey : #ddd;
   background-color: lighten($grey, 15%);
 }
 
+.line {
+  float:right;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
 #lines {
   position: absolute;
   height: 100%;
   z-index: 1;
-  .line {
-    float:right;
-    height: 100%;
-    position: relative;
-    .vertical-text {
-      transform: rotate(90deg);
-      right: -14px;
-      position: absolute;
-      top: 8px;
-    }
-  }
   .line-1 {
     border-left: solid lightgrey 1px;
   }
