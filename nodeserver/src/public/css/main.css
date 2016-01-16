@@ -33,20 +33,34 @@ body {
   font-family: 'Raleway', sans-serif;
   font-size: 11px; }
 
-/*Legend*/
-#legend ul {
-  margin: 0;
-  padding: 0; }
-  #legend ul li {
-    display: inline;
-    position: relative;
-    margin-right: 15px; }
-  #legend ul li:before {
-    content: "•";
-    font-size: 32px;
-    position: absolute;
-    left: -12px;
-    top: -12px; }
+#meta {
+  width: 100%;
+  overflow: auto;
+  /*Legend*/
+  /*Year select*/ }
+  #meta div {
+    float: left; }
+  #meta #legend ul {
+    margin: 0;
+    padding: 0; }
+    #meta #legend ul li {
+      display: inline;
+      position: relative;
+      margin-right: 15px; }
+    #meta #legend ul li:before {
+      content: "•";
+      font-size: 32px;
+      position: absolute;
+      left: -12px;
+      top: -12px; }
+  #meta #year-select {
+    width: 100px;
+    float: right; }
+    #meta #year-select span {
+      display: inline-block;
+      float: right; }
+    #meta #year-select select {
+      float: right; }
 
 /*Chart window*/
 #chart-wrapper {
