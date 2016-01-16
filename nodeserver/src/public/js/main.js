@@ -25,7 +25,7 @@ $(document).ready(function(){
 
     var generateTimeLines = function(scale, inc, year_start, year_end){
 
-        for (var i = 0; i <= Math.floor(year_end - year_start)/inc; i++) {
+        for (var i = 0; i < Math.floor(year_end - year_start)/inc; i++) {
 
             // Columns
             $('<div></div>', {
@@ -35,21 +35,31 @@ $(document).ready(function(){
                 .appendTo('#time-lines')
             ;
 
+            // Date
+            var year = year_end - (i * 5);
+            var text = year;
+            if (year < 0) {
+                text = Math.abs(text) + "BC";
+            }
+
             // Time scale
-            $('<div></div>', {
+            var time = $('<div></div>', {
                 class : 'col',
                 style : "width:" + (5 * scale) + "px;",
-                'data-year' : year_end - (i * 5)
+                'data-year' : year
             })
                 .appendTo('#time-scale')
-                .append('<div class="vertical-text">' + (year_end - (i * 5)) + '</div>')
             ;
+
+            if (year != year_end) {
+                time.append('<div class="vertical-text">' + text + '</div>');
+            }
         }
 
-        $('#time-scale').css('width', 2000 * scale);
-        $('#time-lines').css('width', 2000 * scale);
-        $('#chart').css('width', 2000 * scale);
-        $('#chart-wrapper').css('width', 2000 * scale);
+        $('#time-scale').css('width', (year_end - year_start) * scale);
+        $('#time-lines').css('width', (year_end - year_start) * scale);
+        $('#chart').css('width', (year_end - year_start) * scale);
+        $('#chart-wrapper').css('width', (year_end - year_start) * scale);
     };
 
     var generateRows = function(resp, year_start, year_end){
@@ -60,7 +70,7 @@ $(document).ready(function(){
             if ($('[data-row="' + index + '"]').length == 0) {
                 $('<div></div>', {
                     'data-row' : index,
-                    style : "width:" + ((year_end) * scale) + "px;",
+                    style : "width:" + ((year_end - year_start) * scale) + "px;",
                     class : 'row stripe-' + (index % 4 + 1)
                 }).insertAfter('[data-row="' + (index - 1) + '"]');
             }
@@ -110,18 +120,18 @@ $(document).ready(function(){
     };
 
     // Variables
-    var year_start = -20,
+    var year_start = -1000,
         year_end = 2010,
         row_start = 1,
         row_end = 30,
-        scale = 20,
+        scale = 10,
         inc = 5
     ;
 
     // Create first row on load
     $('<div></div>', {
         'data-row' : 0,
-        style : "width:" + ((year_end) * scale) + "px;",
+        style : "width:" + ((year_end - year_start) * scale) + "px;",
         class : 'row stripe-1'
     }).appendTo('#chart');
 
@@ -133,8 +143,12 @@ $(document).ready(function(){
 
     // Populate select
     var year_select = $('select', '#year-select');
-    for (var i = year_end; i >= year_start; i -= inc) {
-        year_select.append('<option value="' + i + '">' + i + '</option>');
+    for (var i = 2000; i >= year_start; i -= 50) {
+        var text = i;
+        if (i < 0) {
+            text = Math.abs(i) + "BC"
+        }
+        year_select.append('<option value="' + i + '">' + text + '</option>');
     }
     year_select
         .on('change', function(event, type){
@@ -142,7 +156,7 @@ $(document).ready(function(){
                 type = 'scroll'
             }
             var elem = $('#wrapper');
-            var pos = (scale * this.value) - elem.width();
+            var pos = (scale * (parseInt(this.value) + (year_start * -1))) - elem.width();
             var speed = Math.max(Math.min(Math.abs(elem.scrollLeft() - pos), 2000), 500);
             if (type == 'scroll') {
                 elem.animate({scrollLeft: pos}, speed);
@@ -150,7 +164,7 @@ $(document).ready(function(){
                 elem.scrollLeft(pos);
             }
         })
-        .val(1980)
+        .val(1950)
         .trigger('change', 'jump')
     ;
 

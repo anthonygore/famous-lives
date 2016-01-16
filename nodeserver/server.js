@@ -111,7 +111,6 @@ var checkDbExists = function (callback) {
     //        db.close();
     //    });
     //
-    //
     //});
 };
 
@@ -261,7 +260,7 @@ function buildChart(callback) {
         } else {
 
             var chart = [];
-            var scale = 0.5;
+            var scale = 1;
 
             // Construct the chart data
             [year_pos].forEach(function(year, i){ // year_neg

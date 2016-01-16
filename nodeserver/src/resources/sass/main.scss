@@ -4,32 +4,34 @@
 
 /*Variables*/
 $grey : #ddd;
+$lightblue : lightblue;
 $time-scale-height: 40px;
+$tablet-max: 768px;
 
 /*Colors*/
 .sports {
-  color: red;
+  color: #1abc9c;
 }
 .exploration {
-  color: lightsalmon;
+  color: #2ecc71;
 }
 .humanities {
-  color: blue;
+  color: #3498db;
 }
 .institutions {
-  color: green;
+  color: #9b59b6;
 }
 .arts {
-  color: purple
+  color: #34495e;
 }
 .public-figure {
-  color: lightblue;
+  color: #f39c12;
 }
 .science-technology {
-  color: yellowgreen;
+  color: #d35400;
 }
 .business-law {
-  color: lightgreen;
+  color: #27ae60;
 }
 
 /*General*/
@@ -38,9 +40,25 @@ body {
   font-size: 11px;
 }
 
+a {
+  color: $lightblue
+}
+a:visited {
+  color: darken($lightblue, 10%);
+}
+a:hover {
+  color: darken($lightblue, 20%);
+}
+
+a:active {
+  color: lighten($lightblue, 10%);
+}
+
+
 #meta {
   width: 100%;
   overflow:auto;
+  min-height: 26px;
   /*Legend*/
   div {
     float: left;
@@ -48,11 +66,12 @@ body {
   #legend {
     ul {
       margin: 0;
-      padding: 0;
+      padding-left: 10px;
       li {
         display: inline;
         position: relative;
         margin-right: 15px;
+
       }
       li:before {
         content: "•";
@@ -67,6 +86,7 @@ body {
   #year-select {
     width: 100px;
     float:right;
+    margin: 10px 0;
     span {
       display: inline-block;
       float: right;
@@ -80,7 +100,7 @@ body {
 #wrapper {
   position: relative;
   overflow-y: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   border: 1px black solid;
   /*Time scale*/
   #time-scale {
@@ -94,6 +114,18 @@ body {
       right: -14px;
       position: absolute;
       top: 13px;
+    }
+  }
+  /*Time lines*/
+  #time-lines {
+    position: absolute;
+    height: 100%;
+    z-index: 1;
+    .col-1 {
+      border-left: dashed darken($grey, 10%) 1px;
+    }
+    .col-2 {
+      border-left: solid darken($grey, 10%) 1px;
     }
   }
   /*Chart window*/
@@ -125,7 +157,7 @@ body {
               top: 5px;
             }
             span.name:hover {
-              text-decoration: underline;
+              font-weight: 800;
             }
             span.bullet {
               font-size: 24px;
@@ -148,18 +180,6 @@ body {
       .stripe-4 {
         background-color: lighten($grey, 15%);
       }
-      /*Time lines*/
-      #time-lines {
-        position: absolute;
-        height: 100%;
-        z-index: 1;
-        .col-1 {
-          border-left: dashed darken($grey, 10%) 1px;
-        }
-        .col-2 {
-          border-left: solid darken($grey, 10%) 1px;
-        }
-      }
     }
   }
 }
@@ -171,3 +191,42 @@ body {
   box-sizing: border-box;
 }
 
+#profile {
+  background-color: lighten($lightblue, 15%);
+  padding: 10px 20px;
+  border: $lightblue 1px solid;
+  display: inline-block;
+  margin-top: 1em;
+  min-width: 250px;
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    strong {
+      font-weight: 800;
+    }
+  }
+}
+
+#info {
+  text-align: right;
+  @media screen and (max-width: $tablet-max) {
+    text-align: left;
+  }
+}
+
+.col-4, .col-8 {
+  float: left;
+}
+.col-4 {
+  width: 25%;
+  @media screen and (max-width: $tablet-max) {
+    width: 100%;
+  }
+}
+.col-8 {
+  width: 75%;
+  @media screen and (max-width: $tablet-max) {
+    width: 100%;
+  }
+}

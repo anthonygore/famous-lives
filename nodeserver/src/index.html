@@ -3,50 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Horizontal History</title>
-    <link href='https://fonts.googleapis.com/css?family=Raleway:600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:600,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/main.css">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
 
 <div class="container">
-    <div id="info">
-        <h1>Horizontal History</h1>
-        <p>11,000+ famous people from 3500BC to now. Hover on a name for more information.</p>
-        <p>Dataset from <a href="http://pantheon.media.mit.edu/">Pantheon</a>. Inspired by
-            <a href="http://waitbutwhy.com/2016/01/horizontal-history.html">Horizontal History</a> from the Wait But Why blog.
-        </p>
-    </div>
+    <h1>11,000+ Famous People From Recorded History</h1>
 
     <div id="meta">
-        <div id="legend">
+        <div id="legend" class="col-8">
             <ul>
                 <li class="sports">Sports</li>
                 <li class="exploration">Exploration</li>
                 <li class="humanities">Humanities</li>
-                <li class="institutions">Institutions</li>
+                <li class="institutions">Politics & Religion</li>
                 <li class="arts">Arts</li>
                 <li class="public-figure">Public Figure</li>
                 <li class="science-technology">Science & Technology</li>
                 <li class="business-law">Business & Law</li>
             </ul>
         </div>
-        <div id="year-select">
-            <span>Quick scroll to: </span><select></select>
+        <div id="year-select" class="col-4">
+            <select></select>
         </div>
     </div>
 
     <div id="wrapper">
         <div id="time-scale"></div>
+        <div id="time-lines"></div>
         <div id="chart-wrapper">
-            <div id="chart">
-                <div id="time-lines"></div>
+            <div id="chart"></div>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-4">
+            <div id="profile">Hover on a name to see more information.</div>
+        </div>
+        <div class="col-8">
+            <div id="info">
+                <p>Dataset from <a href="http://pantheon.media.mit.edu/">Pantheon</a>. Inspired by
+                    <a href="http://waitbutwhy.com/2016/01/horizontal-history.html">Horizontal History</a> from the <em>Wait But Why</em> blog.
+                </p>
+                <p>Assembled by <a href="https://twitter.com/anthonygore">Anthony Gore</a>. Check out the code on <a href="https://www.github.com">Github</a>.</p>
             </div>
         </div>
     </div>
 
-
-    <div id="profile"></div>
 </div>
 
 <script src="js/main.js"></script>

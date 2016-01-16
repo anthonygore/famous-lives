@@ -5,44 +5,57 @@
 /*Variables*/
 /*Colors*/
 .sports {
-  color: red; }
+  color: #1abc9c; }
 
 .exploration {
-  color: lightsalmon; }
+  color: #2ecc71; }
 
 .humanities {
-  color: blue; }
+  color: #3498db; }
 
 .institutions {
-  color: green; }
+  color: #9b59b6; }
 
 .arts {
-  color: purple; }
+  color: #34495e; }
 
 .public-figure {
-  color: lightblue; }
+  color: #f39c12; }
 
 .science-technology {
-  color: yellowgreen; }
+  color: #d35400; }
 
 .business-law {
-  color: lightgreen; }
+  color: #27ae60; }
 
 /*General*/
 body {
   font-family: 'Raleway', sans-serif;
   font-size: 11px; }
 
+a {
+  color: lightblue; }
+
+a:visited {
+  color: #86c5da; }
+
+a:hover {
+  color: #5fb3ce; }
+
+a:active {
+  color: #d4ebf2; }
+
 #meta {
   width: 100%;
   overflow: auto;
+  min-height: 26px;
   /*Legend*/
   /*Year select*/ }
   #meta div {
     float: left; }
   #meta #legend ul {
     margin: 0;
-    padding: 0; }
+    padding-left: 10px; }
     #meta #legend ul li {
       display: inline;
       position: relative;
@@ -55,7 +68,8 @@ body {
       top: -12px; }
   #meta #year-select {
     width: 100px;
-    float: right; }
+    float: right;
+    margin: 10px 0; }
     #meta #year-select span {
       display: inline-block;
       float: right; }
@@ -65,9 +79,10 @@ body {
 #wrapper {
   position: relative;
   overflow-y: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   border: 1px black solid;
   /*Time scale*/
+  /*Time lines*/
   /*Chart window*/ }
   #wrapper #time-scale {
     direction: rtl;
@@ -80,6 +95,14 @@ body {
       right: -14px;
       position: absolute;
       top: 13px; }
+  #wrapper #time-lines {
+    position: absolute;
+    height: 100%;
+    z-index: 1; }
+    #wrapper #time-lines .col-1 {
+      border-left: dashed #c4c4c4 1px; }
+    #wrapper #time-lines .col-2 {
+      border-left: solid #c4c4c4 1px; }
   #wrapper #chart-wrapper {
     overflow-x: hidden;
     overflow-y: scroll;
@@ -87,8 +110,7 @@ body {
     position: relative;
     max-height: 300px; }
     #wrapper #chart-wrapper #chart {
-      padding-top: 40px;
-      /*Time lines*/ }
+      padding-top: 40px; }
       #wrapper #chart-wrapper #chart .row {
         position: relative;
         height: 20px; }
@@ -107,7 +129,7 @@ body {
               left: 6px;
               top: 5px; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.name:hover {
-              text-decoration: underline; }
+              font-weight: 800; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.bullet {
               font-size: 24px;
               line-height: 11px;
@@ -121,17 +143,44 @@ body {
         background-color: #f7f7f7; }
       #wrapper #chart-wrapper #chart .stripe-4 {
         background-color: white; }
-      #wrapper #chart-wrapper #chart #time-lines {
-        position: absolute;
-        height: 100%;
-        z-index: 1; }
-        #wrapper #chart-wrapper #chart #time-lines .col-1 {
-          border-left: dashed #c4c4c4 1px; }
-        #wrapper #chart-wrapper #chart #time-lines .col-2 {
-          border-left: solid #c4c4c4 1px; }
 
 .col {
   float: right;
   height: 100%;
   position: relative;
   box-sizing: border-box; }
+
+#profile {
+  background-color: #e8f4f8;
+  padding: 10px 20px;
+  border: lightblue 1px solid;
+  display: inline-block;
+  margin-top: 1em;
+  min-width: 250px; }
+  #profile ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0; }
+    #profile ul strong {
+      font-weight: 800; }
+
+#info {
+  text-align: right; }
+  @media screen and (max-width: 768px) {
+    #info {
+      text-align: left; } }
+
+.col-4, .col-8 {
+  float: left; }
+
+.col-4 {
+  width: 25%; }
+  @media screen and (max-width: 768px) {
+    .col-4 {
+      width: 100%; } }
+
+.col-8 {
+  width: 75%; }
+  @media screen and (max-width: 768px) {
+    .col-8 {
+      width: 100%; } }
