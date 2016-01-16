@@ -68,6 +68,7 @@ body {
   overflow: scroll;
   direction: rtl;
   position: relative;
+  max-height: 300px;
   /*Time scale*/ }
   #chart-wrapper #chart {
     /*Time lines*/ }
@@ -87,6 +88,8 @@ body {
             position: absolute; }
           #chart-wrapper #chart .row .wrapper .name-wrapper span.name {
             left: 12px; }
+          #chart-wrapper #chart .row .wrapper .name-wrapper span.name:hover {
+            text-decoration: underline; }
           #chart-wrapper #chart .row .wrapper .name-wrapper span.bullet {
             font-size: 32px;
             line-height: 13px;

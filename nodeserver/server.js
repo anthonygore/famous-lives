@@ -30,7 +30,15 @@ var getPeople = function (callback) {
         }
 
         var collection = db.collection('people');
-        var params = {"name":1,"birthyear":1,"domain":1,"continentName":1,_id:0};
+        var params = {
+            "name":1,
+            "birthyear":1,
+            "countryName":1,
+            "domain":1,
+            "gender":1,
+            "occupation":1,
+            _id:0
+        };
         var sort = {
             "HPI" : 1
         };

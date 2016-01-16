@@ -83,6 +83,7 @@ body {
   overflow: scroll;
   direction:rtl;
   position: relative;
+  max-height: 300px;
   #chart {
     .row {
       position: relative;
@@ -101,6 +102,9 @@ body {
           }
           span.name {
             left: 12px;
+          }
+          span.name:hover {
+            text-decoration: underline;
           }
           span.bullet {
             font-size: 32px;
