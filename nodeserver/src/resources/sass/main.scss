@@ -2,6 +2,7 @@
   font-family: 'Raleway', sans-serif;
 }
 
+/*Variables*/
 $grey : #ddd;
 
 /*Colors*/
@@ -30,10 +31,14 @@ $grey : #ddd;
   color: lightgreen;
 }
 
-/*Legend*/
-#legend {
+/*General*/
+body {
   font-family: 'Raleway', sans-serif;
   font-size: 11px;
+}
+
+/*Legend*/
+#legend {
   ul {
     margin: 0;
     padding: 0;
@@ -52,83 +57,83 @@ $grey : #ddd;
   }
 }
 
-#history-window {
+/*Chart window*/
+#chart-wrapper {
   border: 1px black solid;
   overflow: scroll;
   direction:rtl;
   position: relative;
-  font-family: 'Raleway', sans-serif;
-  font-size: 12px;
-}
-
-#sub-history-window {
-  height: 40px;
-  width: 20000px;
-  background-color: #aaa;
-  .vertical-text {
-    transform: rotate(90deg);
-    right: -14px;
-    position: absolute;
-    top: 15px;
-  }
-}
-
-.row {
-  position: relative;
-  height: 20px;
-  .wrapper {
-    position: absolute;
-    width: 100%;
-    height:100%;
-    .name-wrapper {
+  #chart {
+    .row {
       position: relative;
-      height: 100%;
-      width: 100%;
-      z-index: 1;
-      span {
+      height: 20px;
+      .wrapper {
         position: absolute;
+        width: 100%;
+        height:100%;
+        .name-wrapper {
+          position: relative;
+          height: 100%;
+          width: 100%;
+          z-index: 1;
+          span {
+            position: absolute;
+          }
+          span.name {
+            left: 12px;
+          }
+          span.bullet {
+            font-size: 32px;
+            line-height: 13px;
+            left: 0;
+          }
+        }
       }
-      span.name {
-        left: 12px;
+    }
+    .stripe-1 {
+      background-color: $grey
+    }
+    .stripe-2 {
+      background-color: lighten($grey, 5%);
+    }
+    .stripe-3 {
+      background-color: lighten($grey, 10%);
+    }
+    .stripe-4 {
+      background-color: lighten($grey, 15%);
+    }
+    /*Time lines*/
+    #time-lines {
+      position: absolute;
+      height: 100%;
+      z-index: 1;
+      .col-1 {
+        border-left: dashed darken($grey, 10%) 1px;
       }
-      span.bullet {
-        font-size: 32px;
-        line-height: 13px;
-        left: 0px
+      .col-2 {
+        border-left: solid darken($grey, 10%) 1px;
       }
     }
   }
-
+  /*Time scale*/
+  #time-scale {
+    height: 40px;
+    background-color: #aaa;
+    .vertical-text {
+      transform: rotate(90deg);
+      right: -14px;
+      position: absolute;
+      top: 15px;
+    }
+  }
 }
 
-.stripe-1 {
-  background-color: $grey
-}
-.stripe-2 {
-  background-color: lighten($grey, 5%);
-}
-.stripe-3 {
-  background-color: lighten($grey, 10%);
-}
-.stripe-4 {
-  background-color: lighten($grey, 15%);
-}
 
-.line {
+
+.col {
   float:right;
   height: 100%;
   position: relative;
   box-sizing: border-box;
 }
 
-#lines {
-  position: absolute;
-  height: 100%;
-  z-index: 1;
-  .line-1 {
-    border-left: solid lightgrey 1px;
-  }
-  .line-2 {
-    border-left: dashed lightgrey 1px;
-  }
-}

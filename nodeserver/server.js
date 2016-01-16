@@ -253,7 +253,7 @@ function buildChart(callback) {
         } else {
 
             var chart = [];
-            var scale = 1;
+            var scale = 0.5;
 
             // Construct the chart data
             [year_pos].forEach(function(year, i){ // year_neg
@@ -300,7 +300,7 @@ function buildChart(callback) {
 
                             // Rather than searching for the next year, move forward the number of letters (the
                             // reason for this will be obvious when presenting the data in the front end).
-                            current += (person.nameLength * scale);
+                            current += Math.ceil(person.nameLength * scale);
                         }
 
                     }

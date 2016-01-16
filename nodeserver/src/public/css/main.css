@@ -2,6 +2,7 @@
 @font-face {
   font-family: 'Raleway', sans-serif; }
 
+/*Variables*/
 /*Colors*/
 .sports {
   color: red; }
@@ -27,86 +28,82 @@
 .business-law {
   color: lightgreen; }
 
-/*Legend*/
-#legend {
+/*General*/
+body {
   font-family: 'Raleway', sans-serif;
   font-size: 11px; }
-  #legend ul {
-    margin: 0;
-    padding: 0; }
-    #legend ul li {
-      display: inline;
-      position: relative;
-      margin-right: 15px; }
-    #legend ul li:before {
-      content: "•";
-      font-size: 32px;
-      position: absolute;
-      left: -12px;
-      top: -12px; }
 
-#history-window {
+/*Legend*/
+#legend ul {
+  margin: 0;
+  padding: 0; }
+  #legend ul li {
+    display: inline;
+    position: relative;
+    margin-right: 15px; }
+  #legend ul li:before {
+    content: "•";
+    font-size: 32px;
+    position: absolute;
+    left: -12px;
+    top: -12px; }
+
+/*Chart window*/
+#chart-wrapper {
   border: 1px black solid;
   overflow: scroll;
   direction: rtl;
   position: relative;
-  font-family: 'Raleway', sans-serif;
-  font-size: 12px; }
-
-#sub-history-window {
-  height: 40px;
-  width: 20000px;
-  background-color: #aaa; }
-  #sub-history-window .vertical-text {
-    transform: rotate(90deg);
-    right: -14px;
-    position: absolute;
-    top: 15px; }
-
-.row {
-  position: relative;
-  height: 20px; }
-  .row .wrapper {
-    position: absolute;
-    width: 100%;
-    height: 100%; }
-    .row .wrapper .name-wrapper {
+  /*Time scale*/ }
+  #chart-wrapper #chart {
+    /*Time lines*/ }
+    #chart-wrapper #chart .row {
       position: relative;
+      height: 20px; }
+      #chart-wrapper #chart .row .wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%; }
+        #chart-wrapper #chart .row .wrapper .name-wrapper {
+          position: relative;
+          height: 100%;
+          width: 100%;
+          z-index: 1; }
+          #chart-wrapper #chart .row .wrapper .name-wrapper span {
+            position: absolute; }
+          #chart-wrapper #chart .row .wrapper .name-wrapper span.name {
+            left: 12px; }
+          #chart-wrapper #chart .row .wrapper .name-wrapper span.bullet {
+            font-size: 32px;
+            line-height: 13px;
+            left: 0; }
+    #chart-wrapper #chart .stripe-1 {
+      background-color: #ddd; }
+    #chart-wrapper #chart .stripe-2 {
+      background-color: #eaeaea; }
+    #chart-wrapper #chart .stripe-3 {
+      background-color: #f7f7f7; }
+    #chart-wrapper #chart .stripe-4 {
+      background-color: white; }
+    #chart-wrapper #chart #time-lines {
+      position: absolute;
       height: 100%;
-      width: 100%;
       z-index: 1; }
-      .row .wrapper .name-wrapper span {
-        position: absolute; }
-      .row .wrapper .name-wrapper span.name {
-        left: 12px; }
-      .row .wrapper .name-wrapper span.bullet {
-        font-size: 32px;
-        line-height: 13px;
-        left: 0px; }
+      #chart-wrapper #chart #time-lines .col-1 {
+        border-left: dashed #c4c4c4 1px; }
+      #chart-wrapper #chart #time-lines .col-2 {
+        border-left: solid #c4c4c4 1px; }
+  #chart-wrapper #time-scale {
+    height: 40px;
+    background-color: #aaa; }
+    #chart-wrapper #time-scale .vertical-text {
+      transform: rotate(90deg);
+      right: -14px;
+      position: absolute;
+      top: 15px; }
 
-.stripe-1 {
-  background-color: #ddd; }
-
-.stripe-2 {
-  background-color: #eaeaea; }
-
-.stripe-3 {
-  background-color: #f7f7f7; }
-
-.stripe-4 {
-  background-color: white; }
-
-.line {
+.col {
   float: right;
   height: 100%;
   position: relative;
   box-sizing: border-box; }
-
-#lines {
-  position: absolute;
-  height: 100%;
-  z-index: 1; }
-  #lines .line-1 {
-    border-left: solid lightgrey 1px; }
-  #lines .line-2 {
-    border-left: dashed lightgrey 1px; }

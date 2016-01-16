@@ -10,6 +10,13 @@
 <body>
 
 <div class="container">
+    <div id="info">
+        <h1>Horizontal History</h1>
+        <p>The birth years of 11,000+ famous people presented in a scrolling chart. From 3500BC to now.</p>
+        <p>Dataset from <a href="http://pantheon.media.mit.edu/">Pantheon</a>. Inspired by
+            <a href="http://waitbutwhy.com/2016/01/horizontal-history.html">Horizontal History</a> from the Wait But Why blog.
+        </p>
+    </div>
     <div id="legend">
         <ul>
             <li class="sports">Sports</li>
@@ -22,10 +29,11 @@
             <li class="business-law">Business & Law</li>
         </ul>
     </div>
-    <div id="history-window">
-        <div id="sub-history-window"></div>
-        <div id="lines"></div>
-        <div data-row="0" class="row stripe-1" style="width:20000px;"></div>
+    <div id="chart-wrapper">
+        <div id="time-scale"></div>
+        <div id="chart">
+            <div id="time-lines"></div>
+        </div>
     </div>
 </div>
 
