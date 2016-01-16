@@ -165,10 +165,12 @@ a:active {
       font-weight: 800; }
 
 #info {
-  text-align: right; }
+  text-align: right;
+  margin-top: 8em; }
   @media screen and (max-width: 768px) {
     #info {
-      text-align: left; } }
+      text-align: left;
+      margin-top: 4em; } }
 
 .col-4, .col-8 {
   float: left; }

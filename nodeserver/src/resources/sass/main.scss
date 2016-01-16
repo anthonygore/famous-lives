@@ -210,8 +210,10 @@ a:active {
 
 #info {
   text-align: right;
+  margin-top: 8em;
   @media screen and (max-width: $tablet-max) {
     text-align: left;
+    margin-top: 4em;
   }
 }
 

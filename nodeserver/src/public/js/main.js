@@ -9,23 +9,29 @@ $(document).ready(function(){
         });
     }
 
-    var getData = function(year_start, year_end, row_start, row_end, callback) {
+    var getData = function() {
+        var data = loadingQueue.shift();
         $.get(
-            "/people/" + year_start + "/" + year_end + "/" + row_start + "/" + row_end,
+            "/people/" + data.year_start + "/" + data.year_end + "/" + data.row_start + "/" + data.row_end,
             function() {
 
             })
             .done(function(data) {
-                callback(data, year_start, year_end);
+                renderData(data);
+                if (loadingQueue.length > 0) {
+                    getData();
+                } else {
+                    console.log("All data loaded.");
+                }
             })
-            .fail(function() {
-
+            .fail(function(xhr) {
+                console.log(xhr);
             })
     };
 
     var generateTimeLines = function(scale, inc, year_start, year_end){
 
-        for (var i = 0; i < Math.floor(year_end - year_start)/inc; i++) {
+        for (var i = 0; i < Math.floor((year_end - year_start)/inc); i++) {
 
             // Columns
             $('<div></div>', {
@@ -62,28 +68,37 @@ $(document).ready(function(){
         $('#chart-wrapper').css('width', (year_end - year_start) * scale);
     };
 
-    var generateRows = function(resp, year_start, year_end){
+    var renderData = function(data){
 
-        $.each(resp, function(index, row){
+        var counter = 0;
+
+        $.each(data, function(index, obj){
+
+            var rowNum = obj.row;
+            var row = obj.data;
+
+            var rowElem = $('[data-row="' + rowNum + '"]');
 
             // If row doesn't exist create it
-            if ($('[data-row="' + index + '"]').length == 0) {
-                $('<div></div>', {
-                    'data-row' : index,
-                    style : "width:" + ((year_end - year_start) * scale) + "px;",
-                    class : 'row stripe-' + (index % 4 + 1)
-                }).insertAfter('[data-row="' + (index - 1) + '"]');
+            if (rowElem.length == 0) {
+                rowElem = $('<div></div>', {
+                    'data-row' : rowNum,
+                    style : "width:" + ((global_year_end - global_year_start) * scale) + "px;",
+                    class : 'row stripe-' + (rowNum % 4 + 1)
+                }).insertAfter('[data-row="' + (rowNum - 1) + '"]');
+                // Add to log
+                log[rowNum] = [];
             }
 
             // Create the person
             $.each(row, function(i, item){
 
                 var domain = item.domain.toLowerCase().replace(/\W+/g, "-"),
-                    birth = item.birthyear,
+                    birth = parseInt(item.birthyear),
                     name = item.name,
                     occupation = item.occupation.toLowerCase(),
                     country = toTitleCase(item.countryName)
-                ;
+                    ;
 
                 var blurb =
                     '<ul>' +
@@ -102,48 +117,113 @@ $(document).ready(function(){
                 }
                 blurb += '</ul>';
 
-                $('<div></div>', {
+                // Create element
+                var elem = $('<div></div>', {
                     'data-birth-year' : birth,
                     class : domain + ' wrapper',
-                    style : "width:" + ((year_end - birth) * scale) + "px;"
-                })
-                    .appendTo('[data-row="' + index + '"]')
+                    style : "width:" + ((global_year_end - birth) * scale) + "px;"
+                });
+
+                // Find the place to put it, and add to log while at it..
+                if (log[rowNum].length == 0) {
+                    // It's the first element of the row
+                    log[rowNum].push(birth);
+                    rowElem.append(elem);
+                } else {
+                    var pos;
+                    $.each(log[rowNum], function(key, val){
+                        if (birth > val) {
+                            pos = key + 1;
+                        } else {
+                            pos = key - 1;
+                            return false;
+                        }
+                    });
+                    // It's going to be inserted after another element
+                    elem.insertAfter('[data-birth-year="' + log[rowNum][pos - 1] + '"]', rowElem);
+                    log[rowNum].splice(pos, 0, birth);
+                }
+
+                elem
                     .append('<div class="name-wrapper"><span class="bullet">•</span><span class="name">' + name + '</span></div>')
                     .hover(function(){
                         $('#profile').html(blurb);
                     })
                 ;
-
-            })
+            });
 
         });
+
+        return true;
     };
 
     // Variables
-    var year_start = -1000,
-        year_end = 2010,
+    var global_year_start = 0,
+        global_year_end = 2010,
         row_start = 1,
-        row_end = 30,
+        row_end = 20,
         scale = 10,
         inc = 5
     ;
 
-    // Create first row on load
+    // This is the order that data gets loaded
+    var loadingQueue = [
+        {year_start : 1500, year_end : 1999, row_start : 1, row_end : 20},
+        //{year_start : 1000, year_end :  1499, row_start : 1, row_end : 20},
+        //{year_start : 500, year_end : 999, row_start : 1, row_end : 20},
+        //{year_start : 0, year_end : 499, row_start : 1, row_end : 20},
+        //{year_start : -1000, year_end : -1, row_start : 1, row_end : 20},
+        //{year_start : -2000, year_end : -1001, row_start : 1, row_end : 20},
+        //{year_start : -5000, year_end : -2001, row_start : 1, row_end : 20},
+        //{year_start : 1500, year_end : 1999, row_start : 21, row_end : 40},
+        //{year_start : 1000, year_end :  1499, row_start : 21, row_end : 40},
+        //{year_start : 500, year_end : 999, row_start : 21, row_end : 40},
+        //{year_start : 0, year_end : 499, row_start : 21, row_end : 40},
+        //{year_start : -1000, year_end : -1, row_start : 21, row_end : 40},
+        //{year_start : -2000, year_end : -1001, row_start : 21, row_end : 40},
+        //{year_start : -5000, year_end : -2001, row_start : 21, row_end : 40},
+        //{year_start : 1500, year_end : 1999, row_start : 21, row_end : 60},
+        //{year_start : 1000, year_end :  1499, row_start : 21, row_end : 60},
+        //{year_start : 500, year_end : 999, row_start : 21, row_end : 60},
+        //{year_start : 0, year_end : 499, row_start : 21, row_end : 60},
+        //{year_start : -1000, year_end : -1, row_start : 21, row_end : 60},
+        //{year_start : -2000, year_end : -1001, row_start : 21, row_end : 60},
+        //{year_start : -5000, year_end : -2001, row_start : 21, row_end : 60},
+        //{year_start : 1500, year_end : 1999, row_start : 21, row_end : 80},
+        //{year_start : 1000, year_end :  1499, row_start : 21, row_end : 80},
+        //{year_start : 500, year_end : 999, row_start : 21, row_end : 80},
+        //{year_start : 0, year_end : 499, row_start : 21, row_end : 80},
+        //{year_start : -1000, year_end : -1, row_start : 21, row_end : 80},
+        //{year_start : -2000, year_end : -1001, row_start : 21, row_end : 80},
+        //{year_start : -5000, year_end : -2001, row_start : 21, row_end : 80},
+        //{year_start : 1500, year_end : 1999, row_start : 21, row_end : 100},
+        //{year_start : 1000, year_end :  1499, row_start : 21, row_end : 100},
+        //{year_start : 500, year_end : 999, row_start : 21, row_end : 100},
+        //{year_start : 0, year_end : 499, row_start : 21, row_end : 100},
+        //{year_start : -1000, year_end : -1, row_start : 21, row_end : 100},
+        //{year_start : -2000, year_end : -1001, row_start : 21, row_end : 100},
+        //{year_start : -5000, year_end : -2001, row_start : 21, row_end : 100}
+    ];
+
+    // Create log (with first two rows already created)
+    var log = [[],[]];
+
+    // Create first row
     $('<div></div>', {
-        'data-row' : 0,
-        style : "width:" + ((year_end - year_start) * scale) + "px;",
+        'data-row' : 1,
+        style : "width:" + ((global_year_end - global_year_start) * scale) + "px;",
         class : 'row stripe-1'
     }).appendTo('#chart');
 
-    // Get data on load.
-    getData(year_start, year_end, row_start, row_end, generateRows);
+    // Start downloading data
+    getData();
 
     // Generate time lines on load.
-    generateTimeLines(scale, inc, year_start, year_end);
+    generateTimeLines(scale, inc, global_year_start, global_year_end);
 
     // Populate select
     var year_select = $('select', '#year-select');
-    for (var i = 2000; i >= year_start; i -= 50) {
+    for (var i = 2000; i >= global_year_start; i -= 50) {
         var text = i;
         if (i < 0) {
             text = Math.abs(i) + "BC"
@@ -156,7 +236,7 @@ $(document).ready(function(){
                 type = 'scroll'
             }
             var elem = $('#wrapper');
-            var pos = (scale * (parseInt(this.value) + (year_start * -1))) - elem.width();
+            var pos = (scale * (parseInt(this.value) + (global_year_start * -1))) - elem.width();
             var speed = Math.max(Math.min(Math.abs(elem.scrollLeft() - pos), 2000), 500);
             if (type == 'scroll') {
                 elem.animate({scrollLeft: pos}, speed);
@@ -164,14 +244,14 @@ $(document).ready(function(){
                 elem.scrollLeft(pos);
             }
         })
-        .val(1950)
+        .val(2000)
         .trigger('change', 'jump')
     ;
 
     // On scroll, need to load more records
-    $('#wrapper').bind('scroll', function(event){
-        //
-    });
+    //$('#wrapper').bind('scroll', function(event){
+    //    //getData(1500, global_year_end, row_start, row_end, renderData);
+    //});
 
 
 });

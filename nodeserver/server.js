@@ -469,9 +469,19 @@ seedDb(function(){
                 row_end = data.length;
             }
 
-            return res.json(
-                data.slice(row_start, row_end)
-            );
+            data = data.slice(row_start, (row_end + 1));
+
+            var rtn = [];
+
+            data.forEach(function(row, i){
+                rtn.push({
+                    row: row_start,
+                    data: row
+                });
+                row_start++;
+            });
+
+            return res.json(rtn);
 
         });
 
