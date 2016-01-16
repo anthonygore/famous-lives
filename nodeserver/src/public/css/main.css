@@ -62,62 +62,73 @@ body {
     #meta #year-select select {
       float: right; }
 
-/*Chart window*/
-#chart-wrapper {
-  border: 1px black solid;
-  overflow: scroll;
-  direction: rtl;
+#wrapper {
   position: relative;
-  max-height: 300px;
-  /*Time scale*/ }
-  #chart-wrapper #chart {
-    /*Time lines*/ }
-    #chart-wrapper #chart .row {
-      position: relative;
-      height: 20px; }
-      #chart-wrapper #chart .row .wrapper {
-        position: absolute;
-        width: 100%;
-        height: 100%; }
-        #chart-wrapper #chart .row .wrapper .name-wrapper {
-          position: relative;
-          height: 100%;
-          width: 100%;
-          z-index: 1; }
-          #chart-wrapper #chart .row .wrapper .name-wrapper span {
-            position: absolute; }
-          #chart-wrapper #chart .row .wrapper .name-wrapper span.name {
-            left: 12px; }
-          #chart-wrapper #chart .row .wrapper .name-wrapper span.name:hover {
-            text-decoration: underline; }
-          #chart-wrapper #chart .row .wrapper .name-wrapper span.bullet {
-            font-size: 32px;
-            line-height: 13px;
-            left: 0; }
-    #chart-wrapper #chart .stripe-1 {
-      background-color: #ddd; }
-    #chart-wrapper #chart .stripe-2 {
-      background-color: #eaeaea; }
-    #chart-wrapper #chart .stripe-3 {
-      background-color: #f7f7f7; }
-    #chart-wrapper #chart .stripe-4 {
-      background-color: white; }
-    #chart-wrapper #chart #time-lines {
-      position: absolute;
-      height: 100%;
-      z-index: 1; }
-      #chart-wrapper #chart #time-lines .col-1 {
-        border-left: dashed #c4c4c4 1px; }
-      #chart-wrapper #chart #time-lines .col-2 {
-        border-left: solid #c4c4c4 1px; }
-  #chart-wrapper #time-scale {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  border: 1px black solid;
+  /*Time scale*/
+  /*Chart window*/ }
+  #wrapper #time-scale {
+    direction: rtl;
     height: 40px;
-    background-color: #aaa; }
-    #chart-wrapper #time-scale .vertical-text {
+    background-color: #aaa;
+    position: absolute;
+    z-index: 2; }
+    #wrapper #time-scale .vertical-text {
       transform: rotate(90deg);
       right: -14px;
       position: absolute;
-      top: 15px; }
+      top: 13px; }
+  #wrapper #chart-wrapper {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    direction: rtl;
+    position: relative;
+    max-height: 300px; }
+    #wrapper #chart-wrapper #chart {
+      padding-top: 40px;
+      /*Time lines*/ }
+      #wrapper #chart-wrapper #chart .row {
+        position: relative;
+        height: 20px; }
+        #wrapper #chart-wrapper #chart .row .wrapper {
+          position: absolute;
+          width: 100%;
+          height: 100%; }
+          #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            z-index: 1; }
+            #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span {
+              position: absolute; }
+            #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.name {
+              left: 6px;
+              top: 5px; }
+            #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.name:hover {
+              text-decoration: underline; }
+            #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.bullet {
+              font-size: 24px;
+              line-height: 11px;
+              left: -4px;
+              top: 5px; }
+      #wrapper #chart-wrapper #chart .stripe-1 {
+        background-color: #ddd; }
+      #wrapper #chart-wrapper #chart .stripe-2 {
+        background-color: #eaeaea; }
+      #wrapper #chart-wrapper #chart .stripe-3 {
+        background-color: #f7f7f7; }
+      #wrapper #chart-wrapper #chart .stripe-4 {
+        background-color: white; }
+      #wrapper #chart-wrapper #chart #time-lines {
+        position: absolute;
+        height: 100%;
+        z-index: 1; }
+        #wrapper #chart-wrapper #chart #time-lines .col-1 {
+          border-left: dashed #c4c4c4 1px; }
+        #wrapper #chart-wrapper #chart #time-lines .col-2 {
+          border-left: solid #c4c4c4 1px; }
 
 .col {
   float: right;

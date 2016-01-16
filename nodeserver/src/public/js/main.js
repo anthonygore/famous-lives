@@ -49,6 +49,7 @@ $(document).ready(function(){
         $('#time-scale').css('width', 2000 * scale);
         $('#time-lines').css('width', 2000 * scale);
         $('#chart').css('width', 2000 * scale);
+        $('#chart-wrapper').css('width', 2000 * scale);
     };
 
     var generateRows = function(resp, year_start, year_end){
@@ -140,7 +141,7 @@ $(document).ready(function(){
             if (typeof(type) === 'undefined') {
                 type = 'scroll'
             }
-            var elem = $('#chart-wrapper');
+            var elem = $('#wrapper');
             var pos = (scale * this.value) - elem.width();
             var speed = Math.max(Math.min(Math.abs(elem.scrollLeft() - pos), 2000), 500);
             if (type == 'scroll') {
@@ -154,7 +155,7 @@ $(document).ready(function(){
     ;
 
     // On scroll, need to load more records
-    $('#chart-wrapper').bind('scroll', function(event){
+    $('#wrapper').bind('scroll', function(event){
         //
     });
 
