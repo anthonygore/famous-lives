@@ -31,25 +31,39 @@ $(document).ready(function(){
 
         for (var i = 0; i < Math.floor((year_end - year_start)/inc); i++) {
 
+            var year = year_end - (i * inc);
+            var width;
+
+            if (year == 0) {
+                width = (inc + 1) * scale;
+            }
+            else if (year == inc) {
+                width = (inc - 1) * scale;
+            } else {
+                width = inc * scale;
+            }
+
             // Columns
             $('<div></div>', {
                 class : 'col col-' + (i % 2 + 1),
-                style : "width:" + (5 * scale) + "px;"
+                style : "width:" + width + "px;"
             })
                 .appendTo('#time-lines')
             ;
 
             // Date
-            var year = year_end - (i * 5);
             var text = year;
             if (year < 0) {
                 text = Math.abs(text) + "BC";
+            }
+            else if (year == 0) {
+                text = "1AD";
             }
 
             // Time scale
             var time = $('<div></div>', {
                 class : 'col',
-                style : "width:" + (5 * scale) + "px;",
+                style : "width:" + width + "px;",
                 'data-year' : year
             })
                 .appendTo('#time-scale')
@@ -205,7 +219,7 @@ $(document).ready(function(){
     var global_year_start = -3500,
         global_year_end = 2010,
         scale = 10,
-        inc = 5
+        inc = 5;
     ;
 
     // This is the order that data gets loaded
@@ -244,6 +258,9 @@ $(document).ready(function(){
         var text = i;
         if (i < 0) {
             text = Math.abs(i) + "BC"
+        }
+        else if (i == 0) {
+            text = "1AD";
         }
         year_select.append('<option value="' + i + '">' + text + '</option>');
     }
