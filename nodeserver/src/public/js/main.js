@@ -202,52 +202,25 @@ $(document).ready(function(){
     };
 
     // Variables
-    var global_year_start = 0,
+    var global_year_start = -5000,
         global_year_end = 2010,
-        row_start = 1,
-        row_end = 20,
         scale = 10,
         inc = 5
     ;
 
     // This is the order that data gets loaded
-    var loadingQueue = [
-        {year_start : 1500, year_end : 1999, row_start : 1, row_end : 20},
-        {year_start : 1000, year_end :  1499, row_start : 1, row_end : 20},
-        {year_start : 500, year_end : 999, row_start : 1, row_end : 20},
-        {year_start : 0, year_end : 499, row_start : 1, row_end : 20},
-        {year_start : -1000, year_end : -1, row_start : 1, row_end : 20},
-        {year_start : -2000, year_end : -1001, row_start : 1, row_end : 20},
-        {year_start : -5000, year_end : -2001, row_start : 1, row_end : 20},
-        //{year_start : 1500, year_end : 1999, row_start : 21, row_end : 40},
-        //{year_start : 1000, year_end :  1499, row_start : 21, row_end : 40},
-        //{year_start : 500, year_end : 999, row_start : 21, row_end : 40},
-        //{year_start : 0, year_end : 499, row_start : 21, row_end : 40},
-        //{year_start : -1000, year_end : -1, row_start : 21, row_end : 40},
-        //{year_start : -2000, year_end : -1001, row_start : 21, row_end : 40},
-        //{year_start : -5000, year_end : -2001, row_start : 21, row_end : 40},
-        //{year_start : 1500, year_end : 1999, row_start : 21, row_end : 60},
-        //{year_start : 1000, year_end :  1499, row_start : 21, row_end : 60},
-        //{year_start : 500, year_end : 999, row_start : 21, row_end : 60},
-        //{year_start : 0, year_end : 499, row_start : 21, row_end : 60},
-        //{year_start : -1000, year_end : -1, row_start : 21, row_end : 60},
-        //{year_start : -2000, year_end : -1001, row_start : 21, row_end : 60},
-        //{year_start : -5000, year_end : -2001, row_start : 21, row_end : 60},
-        //{year_start : 1500, year_end : 1999, row_start : 21, row_end : 80},
-        //{year_start : 1000, year_end :  1499, row_start : 21, row_end : 80},
-        //{year_start : 500, year_end : 999, row_start : 21, row_end : 80},
-        //{year_start : 0, year_end : 499, row_start : 21, row_end : 80},
-        //{year_start : -1000, year_end : -1, row_start : 21, row_end : 80},
-        //{year_start : -2000, year_end : -1001, row_start : 21, row_end : 80},
-        //{year_start : -5000, year_end : -2001, row_start : 21, row_end : 80},
-        //{year_start : 1500, year_end : 1999, row_start : 21, row_end : 100},
-        //{year_start : 1000, year_end :  1499, row_start : 21, row_end : 100},
-        //{year_start : 500, year_end : 999, row_start : 21, row_end : 100},
-        //{year_start : 0, year_end : 499, row_start : 21, row_end : 100},
-        //{year_start : -1000, year_end : -1, row_start : 21, row_end : 100},
-        //{year_start : -2000, year_end : -1001, row_start : 21, row_end : 100},
-        //{year_start : -5000, year_end : -2001, row_start : 21, row_end : 100}
-    ];
+    var loadingQueue = [];
+    for (var x = 1; x <= 141; x += 20) {
+        loadingQueue.push(
+            {year_start : 1500, year_end : 1999, row_start : x, row_end : x + 20},
+            {year_start : 1000, year_end :  1499, row_start : x, row_end : x + 20},
+            {year_start : 500, year_end : 999, row_start : x, row_end : x + 20},
+            {year_start : 0, year_end : 499, row_start : x, row_end : x + 20},
+            {year_start : -1000, year_end : -1, row_start : x, row_end : x + 20},
+            {year_start : -2000, year_end : -1001, row_start : x, row_end : x + 20},
+            {year_start : -5000, year_end : -2001, row_start : x, row_end : x + 20}
+        );
+    }
 
     // Create log (with first two rows already created)
     var log = [[],[]];
