@@ -20,8 +20,6 @@ $(document).ready(function(){
                 renderData(data);
                 if (loadingQueue.length > 0) {
                     getData();
-                } else {
-                    console.log("All data loaded.");
                 }
             })
             .fail(function(xhr) {
@@ -70,14 +68,17 @@ $(document).ready(function(){
 
     var renderData = function(data){
 
-        var counter = 0;
-
         $.each(data, function(index, obj){
 
             var rowNum = obj.row;
             var row = obj.data;
 
-            var rowElem = $('[data-row="' + rowNum + '"]');
+            // If there's no data, just continue
+            if (typeof(row[0]) === 'undefined') {
+                return false;
+            }
+
+            var rowElem = $('div[data-row="' + rowNum + '"]');
 
             // If row doesn't exist create it
             if (rowElem.length == 0) {
@@ -90,15 +91,91 @@ $(document).ready(function(){
                 log[rowNum] = [];
             }
 
-            // Create the person
-            $.each(row, function(i, item){
+            var highest_birth_year = parseInt(log[rowNum][log[rowNum.length]]);
 
+            for (var i = 0; i < row.length; i++) {
+
+                var item = row[i];
+
+                // Get some variables
                 var domain = item.domain.toLowerCase().replace(/\W+/g, "-"),
-                    birth = parseInt(item.birthyear),
+                    birth_year = parseInt(item.birthyear),
                     name = item.name,
                     occupation = item.occupation.toLowerCase(),
                     country = toTitleCase(item.countryName)
-                    ;
+                ;
+
+                // Create element
+                var elem =
+                    '<div ' +
+                        'style="width:' + ((global_year_end - birth_year) * scale) + 'px" ' +
+                        'class="' +  domain + ' wrapper" ' +
+                        'data-birth-year="' + birth_year + '"' +
+                    '>' +
+                        '<div class="name-wrapper">' +
+                            '<span class="bullet">•</span>' +
+                            '<span ' +
+                                'class="name"' +
+                                'data-birth-year="' + birth_year + '" ' +
+                                'data-domain="' + domain + '" ' +
+                                'data-name="' + name + '" ' +
+                                'data-occupation="' + occupation + '" ' +
+                                'data-country="' + country + '"' +
+                            '>' + name + '</span>' +
+                        '</div>' +
+                    '</div>'
+                ;
+
+                // Use the log to efficiently find the spot to insert
+
+                var _row = log[rowNum];
+                var pos;
+
+                if (_row.length == 0 || birth_year > highest_birth_year) {
+                    pos = _row.length;
+                    highest_birth_year = birth_year;
+                } else {
+                    for (var x = 0; x < _row.length; x++) {
+                        if (birth_year < _row[x]) {
+                            pos = x;
+                            x = _row.length;
+                        }
+                    }
+                }
+
+                // Splice into the log
+                log[rowNum].splice(pos, 0, birth_year);
+
+                if (pos === 0) {
+                    // Insert at the beginning
+                    rowElem.prepend(elem);
+                }
+                else if (pos === _row.length || _row.length === 1) {
+                    // Insert at the end
+                    rowElem.append(elem);
+                }
+                else {
+                    // Insert after...
+                    $('div[data-birth-year="' + log[rowNum][pos - 1] + '"]', rowElem).after(elem);
+                }
+
+            }
+
+        });
+
+        // Clear the hover handler and re-create
+        $('.name', '.row')
+            .unbind('hover')
+            .hover(function(){
+
+                var self = $(this);
+
+                var domain = self.data('domain'),
+                    birth = self.data('birth-year'),
+                    name = self.data('name'),
+                    occupation = self.data('occupation'),
+                    country = self.data('country')
+                ;
 
                 var blurb =
                     '<ul>' +
@@ -117,40 +194,7 @@ $(document).ready(function(){
                 }
                 blurb += '</ul>';
 
-                // Create element
-                var elem = $('<div></div>', {
-                    'data-birth-year' : birth,
-                    class : domain + ' wrapper',
-                    style : "width:" + ((global_year_end - birth) * scale) + "px;"
-                });
-
-                // Find the place to put it, and add to log while at it..
-                if (log[rowNum].length == 0) {
-                    // It's the first element of the row
-                    log[rowNum].push(birth);
-                    rowElem.append(elem);
-                } else {
-                    var pos;
-                    $.each(log[rowNum], function(key, val){
-                        if (birth > val) {
-                            pos = key + 1;
-                        } else {
-                            pos = key - 1;
-                            return false;
-                        }
-                    });
-                    // It's going to be inserted after another element
-                    elem.insertAfter('[data-birth-year="' + log[rowNum][pos - 1] + '"]', rowElem);
-                    log[rowNum].splice(pos, 0, birth);
-                }
-
-                elem
-                    .append('<div class="name-wrapper"><span class="bullet">•</span><span class="name">' + name + '</span></div>')
-                    .hover(function(){
-                        $('#profile').html(blurb);
-                    })
-                ;
-            });
+                $('#profile').html(blurb);
 
         });
 
@@ -169,12 +213,12 @@ $(document).ready(function(){
     // This is the order that data gets loaded
     var loadingQueue = [
         {year_start : 1500, year_end : 1999, row_start : 1, row_end : 20},
-        //{year_start : 1000, year_end :  1499, row_start : 1, row_end : 20},
-        //{year_start : 500, year_end : 999, row_start : 1, row_end : 20},
-        //{year_start : 0, year_end : 499, row_start : 1, row_end : 20},
-        //{year_start : -1000, year_end : -1, row_start : 1, row_end : 20},
-        //{year_start : -2000, year_end : -1001, row_start : 1, row_end : 20},
-        //{year_start : -5000, year_end : -2001, row_start : 1, row_end : 20},
+        {year_start : 1000, year_end :  1499, row_start : 1, row_end : 20},
+        {year_start : 500, year_end : 999, row_start : 1, row_end : 20},
+        {year_start : 0, year_end : 499, row_start : 1, row_end : 20},
+        {year_start : -1000, year_end : -1, row_start : 1, row_end : 20},
+        {year_start : -2000, year_end : -1001, row_start : 1, row_end : 20},
+        {year_start : -5000, year_end : -2001, row_start : 1, row_end : 20},
         //{year_start : 1500, year_end : 1999, row_start : 21, row_end : 40},
         //{year_start : 1000, year_end :  1499, row_start : 21, row_end : 40},
         //{year_start : 500, year_end : 999, row_start : 21, row_end : 40},
