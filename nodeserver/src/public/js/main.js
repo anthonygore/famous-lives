@@ -202,7 +202,7 @@ $(document).ready(function(){
     };
 
     // Variables
-    var global_year_start = -5000,
+    var global_year_start = -3500,
         global_year_end = 2010,
         scale = 10,
         inc = 5

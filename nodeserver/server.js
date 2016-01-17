@@ -262,69 +262,64 @@ function buildChart(callback) {
             var chart = [];
             var scale = 1;
 
-            // Construct the chart data
-            [year_pos].forEach(function(year, i){ // year_neg
+            var year = year_neg.reverse().concat(year_pos);
 
-                console.log("Year (positive) number of rows: " + year.length);
-                var totalItems = 0;
-                year.forEach(function(item, index){
-                    totalItems += item.length;
-                });
-                console.log("Year (positive) total items: " + totalItems);
+            console.log("Year number of rows: " + year.length);
+            var totalItems = 0;
+            year.forEach(function(item, index){
+                totalItems += item.length;
+            });
+            console.log("Year total items: " + totalItems);
 
-                var pops;
-                var line = 0;
-                var empty = false;
-                var keys = Object.keys(year);
-                var current = parseInt(keys[0]);
-                var highest = parseInt(keys.slice(-1)[0]);
+            var pops;
+            var line = 0;
+            var empty = false;
+            var keys = Object.keys(year);
+            var current = parseInt(keys[0]);
+            var highest = parseInt(keys.slice(-1)[0]);
 
-                // Process the year array until it's empty
-                while (!empty) {
+            // Process the year array until it's empty
+            while (!empty) {
 
-                    pops = 0;
-                    current = parseInt(keys[0]);
+                pops = 0;
+                current = parseInt(keys[0]);
 
-                    while (current <= highest) {
+                while (current <= highest) {
 
-                        // Check if there are any people in this year...
-                        if (year[current] == false || year[current] == null) {
+                    // Check if there are any people in this year...
+                    if (year[current] == false || year[current] == null) {
 
-                            //If not, add 1
-                            current++;
+                        //If not, add 1
+                        current++;
 
-                        } else {
+                    } else {
 
-                            // Pop the first person off the current year
-                            var person = year[current].pop();
-                            pops++;
+                        // Pop the first person off the current year
+                        var person = year[current].pop();
+                        pops++;
 
-                            // Add the popped person to chart
-                            if (!chart[line]) {
-                                chart[line] = [];
-                            }
-                            chart[line].push(person);
-
-                            // Rather than searching for the next year, move forward the number of letters (the
-                            // reason for this will be obvious when presenting the data in the front end).
-                            current += Math.ceil(person.nameLength * scale);
+                        // Add the popped person to chart
+                        if (!chart[line]) {
+                            chart[line] = [];
                         }
+                        chart[line].push(person);
 
+                        // Rather than searching for the next year, move forward the number of letters (the
+                        // reason for this will be obvious when presenting the data in the front end).
+                        current += Math.ceil(person.nameLength * scale);
                     }
-
-                    // After every iteration, move to the next line
-                    line++;
-
-                    // If pops is zero, it means there weren't any years with content and we must be done..
-                    if (pops == 0) {
-                        empty = true;
-                    }
-
-                    console.log("Pops: " + pops);
 
                 }
 
-            });
+                // After every iteration, move to the next line
+                line++;
+
+                // If pops is zero, it means there weren't any years with content and we must be done..
+                if (pops == 0) {
+                    empty = true;
+                }
+
+            }
 
             // Chart should have about 11,000 items in it
             console.log("Chart number of rows: " + chart.length);
@@ -335,6 +330,8 @@ function buildChart(callback) {
             console.log("Chart total items: " + totalItems);
 
             console.log("Chart built, inserting into database");
+
+            console.log(chart[0]);
 
             insertChartDb({data : chart}, function(err){
                 if (err) {
