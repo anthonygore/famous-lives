@@ -1,5 +1,3 @@
 /.idea
-/nodeserver/node_modules
-/nodeserver/src/public/bower_components
 /nodeserver/data.csv
 /mongo/data
