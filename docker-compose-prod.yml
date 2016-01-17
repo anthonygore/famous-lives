@@ -1,0 +1,18 @@
+mongo:
+  image: mongo:latest
+  ports:
+    - "27017:27017"
+  volumes:
+    - /var/app/famous-lives/mongo/data:/data
+  mem_limit: 268435456
+
+server:
+  image: node:latest
+  command: /usr/src/app/run.sh
+  ports:
+    - "80:4000"
+  volumes:
+    - /var/app/famous-lives/nodeserver/:/usr/src/app
+  links:
+    - mongo
+  mem_limit: 268435456
