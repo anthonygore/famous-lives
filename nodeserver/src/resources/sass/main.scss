@@ -5,7 +5,7 @@
 /*Variables*/
 $grey : #ddd;
 $lightblue : lightblue;
-$time-scale-height: 40px;
+$time-scale-height: 45px;
 $tablet-max: 768px;
 
 /*Colors*/
@@ -97,6 +97,7 @@ a:active {
   }
 }
 
+
 #wrapper {
   position: relative;
   overflow-y: hidden;
@@ -110,10 +111,22 @@ a:active {
     position: absolute;
     z-index: 2;
     .vertical-text {
-      transform: rotate(90deg);
-      right: -14px;
+      font-family: Arial, Helvetica, sans-serif;
       position: absolute;
-      top: 13px;
+      right: -22px;
+      top: 22px;
+      text-align: left;
+      font-size: 10px;
+      transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      line-height: 10px;
+      height: 10px;
+      width: 45px;
+      overflow: visible;
+      white-space: nowrap;
     }
   }
   /*Time lines*/

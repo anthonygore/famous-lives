@@ -86,15 +86,27 @@ a:active {
   /*Chart window*/ }
   #wrapper #time-scale {
     direction: rtl;
-    height: 40px;
+    height: 45px;
     background-color: #aaa;
     position: absolute;
     z-index: 2; }
     #wrapper #time-scale .vertical-text {
-      transform: rotate(90deg);
-      right: -14px;
+      font-family: Arial, Helvetica, sans-serif;
       position: absolute;
-      top: 13px; }
+      right: -22px;
+      top: 22px;
+      text-align: left;
+      font-size: 10px;
+      transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      line-height: 10px;
+      height: 10px;
+      width: 45px;
+      overflow: visible;
+      white-space: nowrap; }
   #wrapper #time-lines {
     position: absolute;
     height: 100%;
@@ -110,7 +122,7 @@ a:active {
     position: relative;
     max-height: 300px; }
     #wrapper #chart-wrapper #chart {
-      padding-top: 40px; }
+      padding-top: 45px; }
       #wrapper #chart-wrapper #chart .row {
         position: relative;
         height: 20px; }
