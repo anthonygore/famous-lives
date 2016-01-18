@@ -143,7 +143,8 @@ a:active {
               left: 6px;
               top: 5px;
               cursor: pointer;
-              -webkit-transform: translate3d(0, 0, 0);
+              -webkit-transform: translate3d(0, 0, 1px);
+              transform: translate3d(0, 0, 1px);
               z-index: 1; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.name:hover {
               font-weight: 800; }
