@@ -141,7 +141,8 @@ a:active {
               position: absolute; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.name {
               left: 6px;
-              top: 5px; }
+              top: 5px;
+              cursor: pointer; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.name:hover {
               font-weight: 800; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.bullet {
