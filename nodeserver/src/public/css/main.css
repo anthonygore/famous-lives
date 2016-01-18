@@ -124,7 +124,8 @@ a:active {
     position: relative;
     max-height: 298px; }
     #wrapper #chart-wrapper #chart {
-      padding-top: 45px; }
+      padding-top: 45px;
+      z-index: -1; }
       #wrapper #chart-wrapper #chart .row {
         position: relative;
         height: 20px; }
