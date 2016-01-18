@@ -184,7 +184,7 @@ a:active {
   @media screen and (max-width: 768px) {
     #info {
       text-align: left;
-      margin-top: 4em; } }
+      margin-top: 1.5em; } }
 
 .col-4, .col-8 {
   float: left; }
