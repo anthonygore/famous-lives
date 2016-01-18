@@ -179,8 +179,8 @@ $(document).ready(function(){
 
         // Clear the hover handler and re-create
         $('.name', '.row')
-            .unbind('hover')
-            .hover(function(){
+            .unbind('hover').unbind('click')
+            .on('hover click', function(){
 
                 var self = $(this);
 
