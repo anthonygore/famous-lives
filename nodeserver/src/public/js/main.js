@@ -210,10 +210,6 @@ $(document).ready(function(){
 
                 $('#profile').html(blurb);
             })
-            .css('-webkit-transform', 'translateZ(1px)')
-            .css('-moz-transform', 'translateZ(1px)')
-            .css('-o-transform', 'translateZ(1px)')
-            .css('transform', 'translateZ(1px)')
         ;
 
         return true;
