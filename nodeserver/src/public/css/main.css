@@ -136,15 +136,15 @@ a:active {
           #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper {
             position: relative;
             height: 100%;
-            width: 100%;
-            z-index: 1;
-            -webkit-transform: translate3d(0, 0, 0); }
+            width: 100%; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span {
               position: absolute; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.name {
               left: 6px;
               top: 5px;
-              cursor: pointer; }
+              cursor: pointer;
+              -webkit-transform: translate3d(0, 0, 0);
+              z-index: 1; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.name:hover {
               font-weight: 800; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.bullet {
