@@ -80,6 +80,7 @@ a:active {
   position: relative;
   overflow-y: hidden;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border: 1px black solid;
   /*Time scale*/
   /*Time lines*/
