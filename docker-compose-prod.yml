@@ -15,4 +15,4 @@ server:
     - /var/app/famous-lives/nodeserver/:/usr/src/app
   links:
     - mongo
-  mem_limit: 805306368
+  mem_limit: 700000000
