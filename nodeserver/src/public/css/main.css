@@ -124,8 +124,7 @@ a:active {
     position: relative;
     max-height: 298px; }
     #wrapper #chart-wrapper #chart {
-      padding-top: 45px;
-      z-index: -1; }
+      padding-top: 45px; }
       #wrapper #chart-wrapper #chart .row {
         position: relative;
         height: 20px; }
@@ -167,8 +166,8 @@ a:active {
 .col {
   float: right;
   height: 100%;
-  position: relative;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  z-index: -1; }
 
 #profile {
   background-color: #e8f4f8;
