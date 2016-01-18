@@ -152,6 +152,7 @@ a:active {
     max-height: 298px;
     #chart {
       padding-top: $time-scale-height;
+      z-index:-1;
       .row {
         position: relative;
         height: 20px;
