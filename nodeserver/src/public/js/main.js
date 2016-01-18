@@ -177,38 +177,46 @@ $(document).ready(function(){
 
         });
 
-        // Clear the hover handler and re-create
-        $('.name', '.row')
-            .unbind('hover').unbind('click')
-            .on('hover click', function(){
+        var profile = function(event){
 
-                var self = $(this);
+            var self = $(event.currentTarget);
 
-                var domain = self.data('domain'),
-                    birth = self.data('birth-year'),
-                    name = self.data('name'),
-                    occupation = self.data('occupation'),
-                    country = self.data('country')
+            var domain = self.data('domain'),
+                birth = self.data('birth-year'),
+                name = self.data('name'),
+                occupation = self.data('occupation'),
+                country = self.data('country')
                 ;
 
-                var blurb =
-                    '<ul>' +
-                    '<li><strong>' + name + '</strong>, ' + occupation + '</li>';
-                if (country == 'Unknown') {
-                    blurb += '<li>Unknown birth place, ';
-                } else {
-                    blurb += '<li>Born in ' + country + ', ';
-                }
-                if (birth < 0) {
-                    blurb += Math.abs(birth) + 'BC</li>'
-                } else if (birth > 0 && birth < 500) {
-                    blurb += birth + 'AD</li>'
-                } else {
-                    blurb += birth + '</li>'
-                }
-                blurb += '</ul>';
+            var blurb =
+                '<ul>' +
+                '<li><strong>' + name + '</strong>, ' + occupation + '</li>';
+            if (country == 'Unknown') {
+                blurb += '<li>Unknown birth place, ';
+            } else {
+                blurb += '<li>Born in ' + country + ', ';
+            }
+            if (birth < 0) {
+                blurb += Math.abs(birth) + 'BC</li>'
+            } else if (birth > 0 && birth < 500) {
+                blurb += birth + 'AD</li>'
+            } else {
+                blurb += birth + '</li>'
+            }
+            blurb += '</ul>';
 
-                $('#profile').html(blurb);
+            $('#profile').html(blurb);
+        };
+
+        // Clear the hover handler and re-create
+        $('.name', '.row')
+            .unbind('hover')
+            .unbind('click')
+            .hover(function(event){
+                profile(event);
+            })
+            .click(function(event){
+                profile(event);
             })
         ;
 

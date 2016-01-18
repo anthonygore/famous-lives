@@ -152,6 +152,7 @@ a:active {
     max-height: 298px;
     #chart {
       padding-top: $time-scale-height;
+      position: relative;
       .row {
         position: relative;
         height: 20px;
@@ -165,12 +166,12 @@ a:active {
             width: 100%;
             span {
               position: absolute;
+              z-index:2
             }
             span.name {
               left: 6px;
               top: 5px;
               cursor: pointer;
-              z-index:2
             }
             span.name:hover {
               font-weight: 800;

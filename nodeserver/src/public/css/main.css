@@ -124,7 +124,8 @@ a:active {
     position: relative;
     max-height: 298px; }
     #wrapper #chart-wrapper #chart {
-      padding-top: 45px; }
+      padding-top: 45px;
+      position: relative; }
       #wrapper #chart-wrapper #chart .row {
         position: relative;
         height: 20px; }
@@ -137,12 +138,12 @@ a:active {
             height: 100%;
             width: 100%; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span {
-              position: absolute; }
+              position: absolute;
+              z-index: 2; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.name {
               left: 6px;
               top: 5px;
-              cursor: pointer;
-              z-index: 2; }
+              cursor: pointer; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.name:hover {
               font-weight: 800; }
             #wrapper #chart-wrapper #chart .row .wrapper .name-wrapper span.bullet {
